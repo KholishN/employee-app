@@ -25,7 +25,7 @@ export default function AddData() {
     try {
       e.preventDefault();
 
-      await API.post("/employee", form);
+      await API.post("/employees", form);
     } catch (error) {
       console.log(error);
     }
