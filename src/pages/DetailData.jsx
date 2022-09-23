@@ -8,7 +8,7 @@ export default function DetailData() {
   const navigate = useNavigate();
 
   let { data: employee } = useQuery("employeeChache", async () => {
-    const response = await API.get("/employee/" + id);
+    const response = await API.get("/employees/" + id);
     return response.data;
   });
 
