@@ -75,6 +75,7 @@ export default function DetailData() {
               value={form.nik}
               onChange={handleChange}
               name="nik"
+              disabled
             />
           </div>
 
