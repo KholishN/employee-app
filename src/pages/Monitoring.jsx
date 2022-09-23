@@ -43,7 +43,7 @@ export default function Monitoring() {
   };
   const employee = async () => {
     try {
-      const response = await API.get("/employee");
+      const response = await API.get("/employees");
       setEmployees(response.data);
     } catch (error) {
       console.log(error);
