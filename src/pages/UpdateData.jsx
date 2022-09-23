@@ -51,7 +51,7 @@ export default function DetailData() {
     try {
       e.preventDefault();
 
-      await API.patch("/employees", form);
+      await API.patch("/employees" + id, form);
     } catch (error) {
       console.log(error);
     }
