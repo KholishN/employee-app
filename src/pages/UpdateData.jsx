@@ -18,7 +18,7 @@ export default function DetailData() {
   });
 
   let { data: employee } = useQuery("employeeChache", async () => {
-    const response = await API.get("/employee/" + id);
+    const response = await API.get("/employees/" + id);
     return response.data;
   });
 
@@ -51,7 +51,7 @@ export default function DetailData() {
     try {
       e.preventDefault();
 
-      await API.patch("/employee", form);
+      await API.patch("/employees", form);
     } catch (error) {
       console.log(error);
     }
