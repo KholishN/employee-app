@@ -52,7 +52,7 @@ export default function Monitoring() {
 
   useEffect(() => {
     employee();
-  }, []);
+  }, [employees]);
 
   // delete
   const deleteById = useMutation(async (id) => {

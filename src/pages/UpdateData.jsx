@@ -155,7 +155,14 @@ export default function DetailData() {
               onChange={handleChange}
               name="country"
             >
-              <option value={form.country}>{form.country}</option>
+              <option value="">{form.country}</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="Singapura">Singapura</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Amerika">Amerika</option>
+              <option value="Jepang">Jepang</option>
+              <option value="China">China</option>
             </select>
           </div>
 
