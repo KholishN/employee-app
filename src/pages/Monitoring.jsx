@@ -57,7 +57,7 @@ export default function Monitoring() {
   // delete
   const deleteById = useMutation(async (id) => {
     try {
-      await API.delete(`/employee/${id}`);
+      await API.delete(`/employees/${id}`);
     } catch (error) {
       console.log(error);
     }
