@@ -52,6 +52,7 @@ export default function AddData() {
               className="input-height"
               name="nik"
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -64,6 +65,7 @@ export default function AddData() {
               type="text"
               name="name"
               onChange={handleChange}
+              required
             />
           </div>
 
