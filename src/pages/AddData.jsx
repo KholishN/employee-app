@@ -25,7 +25,7 @@ export default function AddData() {
     try {
       e.preventDefault();
 
-      await API.post("/employee", form);
+      await API.post("/employees", form);
     } catch (error) {
       console.log(error);
     }
@@ -130,9 +130,7 @@ export default function AddData() {
               name="country"
               onChange={handleChange}
             >
-              <option value="" className="defaultOption">
-                Pilih Negara
-              </option>
+              <option value="">Pilih Negara</option>
               <option value="Indonesia">Indonesia</option>
               <option value="Malaysia">Malaysia</option>
               <option value="Singapura">Singapura</option>

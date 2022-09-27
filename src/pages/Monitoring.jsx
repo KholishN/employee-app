@@ -43,7 +43,7 @@ export default function Monitoring() {
   };
   const employee = async () => {
     try {
-      const response = await API.get("/employee");
+      const response = await API.get("/employees");
       setEmployees(response.data);
     } catch (error) {
       console.log(error);
@@ -52,12 +52,12 @@ export default function Monitoring() {
 
   useEffect(() => {
     employee();
-  }, []);
+  }, [employees]);
 
   // delete
   const deleteById = useMutation(async (id) => {
     try {
-      await API.delete(`/employee/${id}`);
+      await API.delete(`/employees/${id}`);
     } catch (error) {
       console.log(error);
     }
