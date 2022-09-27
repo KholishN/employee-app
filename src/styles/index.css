@@ -126,3 +126,16 @@ form label{
   border-radius: 10px;
   border: none;
 }
+
+.validate::placeholder{
+ color: red;
+}
+
+.validate{
+  border: 2px solid red;
+}
+
+.validate:focus{
+  border: 2px solid red;
+
+}

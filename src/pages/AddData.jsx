@@ -2,36 +2,64 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { API } from "../config/api";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 export default function AddData() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
-    nik: "",
-    name: "",
-    gender: "",
-    dateofbirth: "",
-    address: "",
-    country: "",
+  const [form, setForm] = useState(null);
+
+  // const handleChange = (e) => {
+  //   setForm({
+  //     ...form,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      nik: "",
+      name: "",
+      gender: "",
+      dateofbirth: "",
+      address: "",
+      country: "",
+    },
   });
 
-  const handleChange = (e) => {
+  const Submit = (data) => {
     setForm({
-      ...form,
-      [e.target.name]: e.target.value,
+      nik: data.nik,
+      name: data.name,
+      gender: data.gender,
+      dateofbirth: data.dateofbirth,
+      address: data.address,
+      country: data.country,
     });
   };
 
-  const handleSubmit = useMutation(async (e) => {
+  const confirmSubmit = useMutation(async (form) => {
     try {
-      e.preventDefault();
+      // e.preventDefault();
 
       await API.post("/employees", form);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
-
-    navigate("/");
   });
+
+  useEffect(() => {
+    if (form) {
+      confirmSubmit.mutate(form);
+    } else {
+      console.log("no");
+    }
+  }, [form]);
 
   function goToHome() {
     navigate("/");
@@ -41,18 +69,21 @@ export default function AddData() {
     <div className="p-2">
       <h1 className="text-center">Tambah Data Baru</h1>
 
-      <div className=" d-flex justify-content-center">
-        <form className="formSection">
+      <div className=" d-flex justify-content-center" onSubmit={handleSubmit()}>
+        <form className="formSection" onSubmit={handleSubmit(Submit)}>
           <div className="d-flex flex-column">
             <label htmlFor="nik" className="pb-2">
               NIK
             </label>
             <input
               type="number"
-              className="input-height"
-              name="nik"
-              onChange={handleChange}
-              required
+              className={errors.nik ? "input-height validate" : "input-height"}
+              {...register("nik", {
+                required: "Nik Wajib Di isi,Silahkan Masukan Nik",
+              })}
+              placeholder={
+                errors.nik ? "Nik Wajib Di isi,Silahkan Masukan Nik" : "NIK"
+              }
             />
           </div>
 
@@ -61,11 +92,12 @@ export default function AddData() {
               Nama Lengkap
             </label>
             <input
-              className="input-height"
+              className={errors.name ? "input-height validate" : "input-height"}
               type="text"
-              name="name"
-              onChange={handleChange}
-              required
+              {...register("name", { required: "Masukan Nama" })}
+              placeholder={
+                errors.name ? "Name Wajib Di isi,Silahkan Masukan Name" : "Name"
+              }
             />
           </div>
 
@@ -76,9 +108,8 @@ export default function AddData() {
             <div>
               <input
                 type="radio"
-                name="gender"
+                {...register("gender")}
                 className="radiobtn"
-                onChange={handleChange}
                 value="Laki-Laki"
               />
               <label htmlFor="mele" className="ps-1 pe-3">
@@ -87,9 +118,8 @@ export default function AddData() {
 
               <input
                 type="radio"
-                name="gender"
                 className="radiobtn"
-                onChange={handleChange}
+                {...register("gender")}
                 value="Perempuan"
               />
               <label htmlFor="female" className="ps-1 pe-3">
@@ -99,14 +129,13 @@ export default function AddData() {
           </div>
 
           <div className="d-flex flex-column pt-3">
-            <label htmlFor="date" className="pb-2" dirName="age">
+            <label htmlFor="date" className="pb-2">
               Tanggal Lahir
             </label>
             <input
               type="date"
               className="input-height"
-              name="dateofbirth"
-              onChange={handleChange}
+              {...register("dateofbirth")}
             />
           </div>
 
@@ -114,11 +143,7 @@ export default function AddData() {
             <label htmlFor="address" className="pb-2">
               Alamat
             </label>
-            <textarea
-              className="text-height"
-              name="address"
-              onChange={handleChange}
-            />
+            <textarea className="text-height" {...register("address")} />
           </div>
 
           <div className="pt-3">
@@ -127,8 +152,7 @@ export default function AddData() {
             </label>
             <select
               className="input-height input-width"
-              name="country"
-              onChange={handleChange}
+              {...register("country")}
             >
               <option value="">Pilih Negara</option>
               <option value="Indonesia">Indonesia</option>
@@ -142,11 +166,7 @@ export default function AddData() {
           </div>
 
           <div className="pt-3">
-            <button
-              type="submit"
-              className="btn-form btn-blue"
-              onClick={(e) => handleSubmit.mutate(e)}
-            >
+            <button type="submit" className="btn-form btn-blue">
               Simpan
             </button>
             <button onClick={goToHome} className="btn-form btn-gray">
