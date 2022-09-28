@@ -28,9 +28,8 @@ export default function DetailData() {
             </label>
             <input
               type="number"
-              className="input-height"
+              className="input-height px-2"
               value={employee?.nik}
-              disabled
             />
           </div>
 
@@ -39,10 +38,9 @@ export default function DetailData() {
               Nama Lengkap
             </label>
             <input
-              className="input-height"
+              className="input-height px-2"
               type="text"
               value={employee?.name}
-              disabled
             />
           </div>
 
@@ -55,7 +53,6 @@ export default function DetailData() {
                 type="radio"
                 name="gender"
                 className="radiobtn"
-                disabled
                 checked={employee?.gender === "Laki-Laki"}
               />
               <label htmlFor="mele" className="ps-1 pe-3">
@@ -65,7 +62,6 @@ export default function DetailData() {
                 type="radio"
                 name="gender"
                 className="radiobtn"
-                disabled
                 checked={employee?.gender === "Perempuan"}
               />
               <label htmlFor="female" className="ps-1 pe-3">
@@ -80,9 +76,8 @@ export default function DetailData() {
             </label>
             <input
               type="date"
-              className="input-height"
+              className="input-height px-2"
               value={employee?.dateofbirth?.substr(0, 10)}
-              disabled
             />
           </div>
 
@@ -90,18 +85,14 @@ export default function DetailData() {
             <label htmlFor="address" className="pb-2">
               Alamat
             </label>
-            <textarea
-              className="text-height"
-              value={employee?.address}
-              disabled
-            />
+            <textarea className="text-height p-2" value={employee?.address} />
           </div>
 
           <div className="pt-3">
             <label htmlFor="" className="pb-2">
               Negara
             </label>
-            <select className="input-height input-width" disabled>
+            <select className="input-height input-width px-2">
               <option value={employee?.country}>{employee?.country}</option>
             </select>
           </div>

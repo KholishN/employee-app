@@ -73,13 +73,16 @@ export default function Monitoring() {
 
   // seacrh
   const data = Object.values(employees);
-  const [q, setQ] = useState("");
+  const [nikname, setNikname] = useState("");
   const [searchParam] = useState(["nik", "name"]);
   function searchTerm(items) {
     return items.filter((item) => {
       return searchParam.some((newItem) => {
         return (
-          item[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+          item[newItem]
+            .toString()
+            .toLowerCase()
+            .indexOf(nikname.toLowerCase()) > -1
         );
       });
     });
@@ -104,7 +107,11 @@ export default function Monitoring() {
       <div className="searchSection p-5 ">
         <div className="d-flex flex-column pb-3 ">
           <label htmlFor="nik">Search Nama/NIK</label>
-          <input type="text" id="nik" onChange={(e) => setQ(e.target.value)} />
+          <input
+            type="text"
+            id="nik"
+            onChange={(e) => setNikname(e.target.value)}
+          />
         </div>
       </div>
 

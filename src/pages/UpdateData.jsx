@@ -40,13 +40,6 @@ export default function DetailData() {
     }
   }, [employee]);
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const handleSubmit = useMutation(async (e) => {
     try {
       e.preventDefault();
@@ -71,11 +64,9 @@ export default function DetailData() {
             </label>
             <input
               type="number"
-              className="input-height"
+              className="input-height px-2"
               value={form.nik}
-              onChange={handleChange}
               name="nik"
-              disabled
             />
           </div>
 
@@ -84,10 +75,9 @@ export default function DetailData() {
               Nama Lengkap
             </label>
             <input
-              className="input-height"
+              className="input-height px-2"
               type="text"
               value={form.name}
-              onChange={handleChange}
               name="name"
             />
           </div>
@@ -102,7 +92,6 @@ export default function DetailData() {
                 name="gender"
                 className="radiobtn"
                 checked={form.gender === "Laki-Laki"}
-                onChange={handleChange}
                 value="Laki-Laki"
               />
               <label htmlFor="mele" className="ps-1 pe-3">
@@ -113,7 +102,6 @@ export default function DetailData() {
                 name="gender"
                 className="radiobtn"
                 checked={form.gender === "Perempuan"}
-                onChange={handleChange}
                 value="Perempuan"
               />
               <label htmlFor="female" className="ps-1 pe-3">
@@ -128,9 +116,8 @@ export default function DetailData() {
             </label>
             <input
               type="date"
-              className="input-height"
+              className="input-height px-2"
               value={form.dateofbirth.substr(0, 10)}
-              onChange={handleChange}
               name="dateofbirth"
             />
           </div>
@@ -140,9 +127,8 @@ export default function DetailData() {
               Alamat
             </label>
             <textarea
-              className="text-height"
+              className="text-height px-2"
               value={form.address}
-              onChange={handleChange}
               name="address"
             />
           </div>
@@ -151,11 +137,7 @@ export default function DetailData() {
             <label htmlFor="" className="pb-2">
               Negara
             </label>
-            <select
-              className="input-height input-width"
-              onChange={handleChange}
-              name="country"
-            >
+            <select className="input-height input-width px-2" name="country">
               <option value="">{form.country}</option>
               <option value="Indonesia">Indonesia</option>
               <option value="Malaysia">Malaysia</option>

@@ -9,13 +9,6 @@ export default function AddData() {
   const navigate = useNavigate();
   const [form, setForm] = useState(null);
 
-  // const handleChange = (e) => {
-  //   setForm({
-  //     ...form,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
   const {
     register,
     handleSubmit,
@@ -44,20 +37,15 @@ export default function AddData() {
 
   const confirmSubmit = useMutation(async (form) => {
     try {
-      // e.preventDefault();
-
       await API.post("/employees", form);
       navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   });
 
   useEffect(() => {
     if (form) {
       confirmSubmit.mutate(form);
     } else {
-      console.log("no");
     }
   }, [form]);
 
@@ -77,7 +65,9 @@ export default function AddData() {
             </label>
             <input
               type="number"
-              className={errors.nik ? "input-height validate" : "input-height"}
+              className={
+                errors.nik ? "input-height validate px-2" : "input-height px-2"
+              }
               {...register("nik", {
                 required: "Nik Wajib Di isi,Silahkan Masukan Nik",
               })}
@@ -92,7 +82,9 @@ export default function AddData() {
               Nama Lengkap
             </label>
             <input
-              className={errors.name ? "input-height validate" : "input-height"}
+              className={
+                errors.name ? "input-height validate px-2" : "input-height px-2"
+              }
               type="text"
               {...register("name", { required: "Masukan Nama" })}
               placeholder={
@@ -134,7 +126,7 @@ export default function AddData() {
             </label>
             <input
               type="date"
-              className="input-height"
+              className="input-height px-2"
               {...register("dateofbirth")}
             />
           </div>
@@ -143,7 +135,7 @@ export default function AddData() {
             <label htmlFor="address" className="pb-2">
               Alamat
             </label>
-            <textarea className="text-height" {...register("address")} />
+            <textarea className="text-height px-2" {...register("address")} />
           </div>
 
           <div className="pt-3">
@@ -151,7 +143,7 @@ export default function AddData() {
               Negara
             </label>
             <select
-              className="input-height input-width"
+              className="input-height input-width px-2"
               {...register("country")}
             >
               <option value="">Pilih Negara</option>
