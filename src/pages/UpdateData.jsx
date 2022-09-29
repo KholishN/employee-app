@@ -40,6 +40,13 @@ export default function DetailData() {
     }
   }, [employee]);
 
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = useMutation(async (e) => {
     try {
       e.preventDefault();
@@ -79,6 +86,7 @@ export default function DetailData() {
               type="text"
               value={form.name}
               name="name"
+              onChange={handleChange}
             />
           </div>
 
@@ -93,6 +101,7 @@ export default function DetailData() {
                 className="radiobtn"
                 checked={form.gender === "Laki-Laki"}
                 value="Laki-Laki"
+                onChange={handleChange}
               />
               <label htmlFor="mele" className="ps-1 pe-3">
                 Laki-Laki
@@ -103,6 +112,7 @@ export default function DetailData() {
                 className="radiobtn"
                 checked={form.gender === "Perempuan"}
                 value="Perempuan"
+                onChange={handleChange}
               />
               <label htmlFor="female" className="ps-1 pe-3">
                 Perempuan
@@ -119,6 +129,7 @@ export default function DetailData() {
               className="input-height px-2"
               value={form.dateofbirth.substr(0, 10)}
               name="dateofbirth"
+              onChange={handleChange}
             />
           </div>
 
@@ -130,6 +141,7 @@ export default function DetailData() {
               className="text-height px-2"
               value={form.address}
               name="address"
+              onChange={handleChange}
             />
           </div>
 
@@ -137,7 +149,11 @@ export default function DetailData() {
             <label htmlFor="" className="pb-2">
               Negara
             </label>
-            <select className="input-height input-width px-2" name="country">
+            <select
+              className="input-height input-width px-2"
+              name="country"
+              onChange={handleChange}
+            >
               <option value="">{form.country}</option>
               <option value="Indonesia">Indonesia</option>
               <option value="Malaysia">Malaysia</option>
