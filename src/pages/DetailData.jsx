@@ -18,7 +18,7 @@ export default function DetailData() {
 
   return (
     <div className="p-2">
-      <h1 className="text-center">Data Pribadi {employee?.name}</h1>
+      <h1 className="text-center">Data Pribadi </h1>
 
       <div className=" d-flex justify-content-center">
         <form className="formSection">
